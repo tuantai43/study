@@ -1,0 +1,15 @@
+@media (min-width: 1200px) {
+    .header {
+        .menu-icon {
+            display: none;
+        }
+    }
+    .sidebar,
+    .sidebar:not(.active) {
+        opacity: 1;
+        max-height: calc(100vh - 70px);
+        min-height: 200px;
+        flex-basis: 200px;
+        overflow-y: auto;
+    }
+}

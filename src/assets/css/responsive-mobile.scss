@@ -1,0 +1,11 @@
+@media (max-width: 1199px) {
+    .sidebar:not(.active) {
+        height: 0 !important;
+        opacity: 0;
+        margin-top: -20px;
+    }
+
+    .page-body {
+        flex-direction: column;
+    }
+}

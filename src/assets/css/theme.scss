@@ -1,0 +1,30 @@
+#default-theme {
+    color: var(--text);
+}
+
+a {
+    color: var(--text);
+}
+
+a,
+.router-link:hover,
+.router-link-active,
+.primary-text {
+    color: var(--accent);
+}
+
+.router-link-active {
+    font-weight: bold;
+}
+
+.header {
+    border-bottom: 2px solid var(--accent);
+    color: var(--accent);
+    background-color: white;
+    box-shadow: 0 5px 5px -5px var(--text);
+}
+.menu-icon {
+    div {
+        background-color: var(--accent);
+    }
+}
