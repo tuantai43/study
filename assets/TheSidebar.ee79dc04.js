@@ -1,2 +1,0 @@
-import{_ as c}from"./index.a7220540.js";import{a as t,j as l,w as r,o as i,b as _,e as u,t as d}from"./vendor.d2d6052d.js";const p={setup(){return{routes:[{text:"Virtual scroller",index:"virtual-scroller"}]}}};function m(o,x,f,s,v,h){const a=t("router-link"),n=t("base-virtual-scroller");return i(),l(n,{items:s.routes,amount:20,"item-height":30},{template:r(({item:e})=>[_(a,{to:e.index,class:"router-link"},{default:r(()=>[u(d(e.text),1)]),_:2},1032,["to"])]),_:1},8,["items"])}var j=c(p,[["render",m]]);export{j as default};
-//# sourceMappingURL=TheSidebar.ee79dc04.js.map
