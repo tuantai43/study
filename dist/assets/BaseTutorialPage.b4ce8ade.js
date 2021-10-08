@@ -1,2 +1,1 @@
 import{_ as r}from"./index.9d7ded18.js";import{c as o,d as e,t as a,p as n,F as i,o as d}from"./vendor.73d7a59d.js";const l={props:{title:String,description:String}},_={class:"header-tutorial"},c={class:""};function u(s,p,t,f,g,m){return d(),o(i,null,[e("div",_,[e("h1",null,a(t.title),1),e("h3",null,a(t.description),1)]),e("div",c,[n(s.$slots,"default")])],64)}var B=r(l,[["render",u]]);export{B as default};
-//# sourceMappingURL=BaseTutorialPage.b4ce8ade.js.map
