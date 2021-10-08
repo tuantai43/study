@@ -7,9 +7,6 @@ export default defineConfig({
     plugins: [vue()],
     build: {
         sourcemap: true,
-        lib: {
-            entry: path.resolve(__dirname, 'src/main.js'),
-            name: 'MyCssLib',
-        },
+        outDir: './docs',
     },
 });
