@@ -1,0 +1,20 @@
+.home-page {
+    background-size: 400% 400%;
+    animation: background-move 15s linear alternate infinite;
+    height: calc(100vh - 16px);
+    margin-top: -62px;
+    padding-top: 0;
+    margin-bottom: 8px;
+    align-items: center;
+    justify-content: center;
+
+    .say-hi {
+        font-size: 2em;
+    }
+
+    .get-start {
+        flex-basis: auto;
+        text-decoration: none;
+        border-width: 2px;
+    }
+}

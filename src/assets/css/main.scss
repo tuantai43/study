@@ -4,6 +4,8 @@
 @import './grid.scss';
 @import './responsive-desktop.scss';
 @import './responsive-mobile.scss';
+@import './control.scss';
+@import './home-page.scss';
 
 #app {
     font-family: Roboto, Avenir, Helvetica, Arial, sans-serif;
@@ -19,4 +21,13 @@ h3 {
 
 .router-link {
     text-decoration: none;
+}
+
+@keyframes background-move {
+    0% {
+        background-position: top left;
+    }
+    100% {
+        background-position: bottom right;
+    }
 }

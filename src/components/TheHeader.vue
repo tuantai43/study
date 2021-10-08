@@ -1,7 +1,12 @@
 <template>
-    <div class="header">
-        <strong class="name">ptuantai</strong>
-        <div :class="['menu-icon', { change: toggle }]" @click="toggleIcon">
+    <div :class="['header', { transparent: transparent }]">
+        <router-link :to="{ name: 'Home' }" class="router-link">
+            <strong class="name">ptuantai</strong>
+        </router-link>
+        <div
+            :class="['menu-icon', { change: toggle }]"
+            @click="toggleIcon"
+            v-if="!hideMenuIcon">
             <div class="bar1"></div>
             <div class="bar2"></div>
             <div class="bar3"></div>
@@ -29,6 +34,10 @@ export default {
             toggle,
             toggleIcon,
         };
+    },
+    props: {
+        hideMenuIcon: Boolean,
+        transparent: Boolean,
     },
 };
 </script>

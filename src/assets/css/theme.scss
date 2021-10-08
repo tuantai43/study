@@ -9,8 +9,14 @@ a {
 a,
 .router-link:hover,
 .router-link-active,
-.primary-text {
+.text-primary {
     color: var(--accent);
+}
+
+.btn-primary {
+    color: white;
+    background-color: var(--accent);
+    border-color: var(--accent);
 }
 
 .router-link-active {
@@ -22,9 +28,37 @@ a,
     color: var(--accent);
     background-color: white;
     box-shadow: 0 5px 5px -5px var(--text);
+    &.transparent {
+        border-bottom-color: white;
+        background-color: transparent;
+        padding-left: 10px;
+        .menu-icon {
+            div {
+                background-color: white;
+            }
+        }
+        &,
+        .name {
+            color: white;
+        }
+    }
 }
+
 .menu-icon {
     div {
         background-color: var(--accent);
     }
+}
+
+.transparent {
+    color: white;
+    .btn-primary {
+        border-color: white;
+        background-color: transparent;
+    }
+}
+
+.home-page {
+    background: radial-gradient(ellipse at top, #ddff1c, transparent),
+        radial-gradient(ellipse at bottom, var(--accent), transparent);
 }

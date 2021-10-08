@@ -4,12 +4,14 @@ import routesVirtualScroller from './views/virtual-scroller/routes';
 import Home from './views/Home.vue';
 const routes = [
     {
-        path: '/study',
+        path: '/study/',
+        name: 'Home',
         component: Home,
     },
     {
         path: '/study/virtual-scroller',
         component: DefaultLayout,
+        name: 'VirtualScroller',
         children: routesVirtualScroller,
     },
 ];
