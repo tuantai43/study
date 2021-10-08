@@ -1,0 +1,2 @@
+import{_ as r}from"./index.7e62b875.js";import{c as o,d as e,t as s,m as n,F as i,o as l}from"./vendor.d2d6052d.js";const d={props:{title:String,description:String}},_={class:"header-tutorial"},c={class:""};function u(a,p,t,f,m,g){return l(),o(i,null,[e("div",_,[e("h1",null,s(t.title),1),e("h3",null,s(t.description),1)]),e("div",c,[n(a.$slots,"default")])],64)}var B=r(d,[["render",u]]);export{B as default};
+//# sourceMappingURL=BaseTutorialPage.8fd69fa9.js.map
