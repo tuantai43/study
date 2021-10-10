@@ -1,16 +1,41 @@
+// Breakpoints
+$bp: (
+    small: 1023px,
+    medium: 64em,
+    // 1024px
+    large: 85.375em,
+    // 1366px
+    xlarge: 120em,
+    // 1920px
+    xxlarge: 160em,
+    // 2560px
+);
+
+// Media Queries
+$mq-small: '(max-width: #{map-get($bp, "small" )})';
+$mq-medium: '(min-width: #{map-get($bp,"medium")})';
+$mq-large: '(min-width: #{map-get($bp,"large")})';
+$mq-xlarge: '(min-width: #{map-get($bp,"xlarge")})';
+$mq-xxlarge: '(min-width: #{map-get($bp,"xxlarge")})';
+$mq-retina: '(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)';
+
 @import './color.scss';
 @import './theme.scss';
 @import './layout.scss';
 @import './grid.scss';
-@import './responsive-desktop.scss';
-@import './responsive-mobile.scss';
+@import './responsive-small.scss';
+@import './responsive-medium.scss';
 @import './control.scss';
 @import './home-page.scss';
+@import './pagination.scss';
+@import './notification.scss';
 
-#app {
+body {
     font-family: Roboto, Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    line-height: 1.5;
 }
 
 h1,
@@ -19,15 +44,10 @@ h3 {
     margin: 0.2em 0;
 }
 
-.router-link {
-    text-decoration: none;
+button {
+    font-size: inherit;
 }
 
-@keyframes background-move {
-    0% {
-        background-position: top left;
-    }
-    100% {
-        background-position: bottom right;
-    }
+a:not(:hover) {
+    text-decoration: none;
 }

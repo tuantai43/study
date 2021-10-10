@@ -1,11 +1,8 @@
 const routesVirtualScroller = [
     {
-        path: '',
+        path: '/virtual-scroller',
         name: 'VirtualScroller',
-        component: () =>
-            import(
-                /* webpackChunkName: "group-virtual-scroller" */ './VirtualScrollerIndex.vue'
-            ),
+        component: () => import('./VirtualScrollerIndex.vue'),
     },
 ];
 

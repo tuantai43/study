@@ -1,23 +1,32 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import DefaultLayout from '../layout/DefaultLayout.vue';
-import routesVirtualScroller from './views/virtual-scroller/routes';
 import Home from './views/Home.vue';
+import routesVirtualScroller from './views/virtual-scroller/routes';
+import routesPagination from './views/pagination/routes';
+import routesNotification from './views/notification/routes';
 const routes = [
     {
-        path: '/study/',
+        path: '/',
         name: 'Home',
         component: Home,
     },
     {
-        path: '/study/virtual-scroller',
+        path: '/tutorial',
         component: DefaultLayout,
-        name: 'VirtualScroller',
-        children: routesVirtualScroller,
+        children: [
+            ...routesVirtualScroller,
+            ...routesPagination,
+            ...routesNotification,
+            {
+                path: '/single-page-app-for-github-pages',
+                component: () => import('./views/SinglePageAppGithub.vue'),
+            },
+        ],
     },
 ];
 export default function () {
     return createRouter({
-        history: createWebHistory(),
+        history: createWebHistory('/study'),
         routes,
     });
 }

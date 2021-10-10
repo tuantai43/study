@@ -1,5 +1,20 @@
 .btn {
-    border-radius: 10px;
-    padding: 0.8em;
-    border: 1px solid;
+    border-radius: 0.5em;
+    padding: 0.5em;
+    border: 0.1em solid;
+}
+
+.badge {
+    border-radius: 0.3em;
+    padding: 0.1em 0.2em;
+    font-size: 0.9em;
+}
+
+.page-link,
+.router-link {
+    text-decoration: none;
+    cursor: pointer;
+    &.disabled {
+        cursor: not-allowed;
+    }
 }

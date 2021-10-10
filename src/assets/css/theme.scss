@@ -1,16 +1,28 @@
-#default-theme {
-    color: var(--text);
-}
-
-a {
+.default-theme {
     color: var(--text);
 }
 
 a,
+button {
+    color: inherit;
+}
+
+.page-link.active,
+.page-link:not(.disabled):hover,
 .router-link:hover,
 .router-link-active,
 .text-primary {
     color: var(--accent);
+}
+
+.router-link.disabled,
+.page-link.disabled {
+    color: var(--badge);
+}
+
+.page-link {
+    background-color: transparent;
+    border: none;
 }
 
 .btn-primary {
@@ -24,14 +36,18 @@ a,
 }
 
 .header {
-    border-bottom: 2px solid var(--accent);
-    color: var(--accent);
+    border-bottom: 0.1em solid var(--accent);
     background-color: white;
-    box-shadow: 0 5px 5px -5px var(--text);
+    box-shadow: 0 0.2em 0.2em -0.2em var(--text);
+    color: var(--accent);
+    .name {
+        color: var(--accent);
+    }
     &.transparent {
-        border-bottom-color: white;
+        border-bottom-width: 0;
         background-color: transparent;
-        padding-left: 10px;
+        padding-left: 1rem;
+        box-shadow: none;
         .menu-icon {
             div {
                 background-color: white;
@@ -59,6 +75,22 @@ a,
 }
 
 .home-page {
-    background: radial-gradient(ellipse at top, #ddff1c, transparent),
-        radial-gradient(ellipse at bottom, var(--accent), transparent);
+    .footer {
+        background-color: white;
+    }
+}
+
+.badge {
+    background-color: var(--badge);
+}
+
+.notify-item {
+    &.warning {
+        background-color: var(--warning);
+        color: white;
+    }
+    &.danger {
+        color: white;
+        background-color: var(--danger);
+    }
 }

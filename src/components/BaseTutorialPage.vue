@@ -1,7 +1,7 @@
 <template>
     <div class="header-tutorial">
         <h1>{{ title }}</h1>
-        <h3>{{ description }}</h3>
+        <h3 v-if="description" v-html="description"></h3>
     </div>
     <div class="">
         <slot></slot>

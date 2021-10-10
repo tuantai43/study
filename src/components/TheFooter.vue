@@ -1,7 +1,2 @@
-<template><span class="footer"> ©2021 pham tuan tai </span></template>
+<template><div class="footer">©2021 pham tuan tai</div></template>
 <script setup></script>
-<style lang="scss" scoped>
-span {
-    font-size: 0.8em;
-}
-</style>

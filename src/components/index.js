@@ -1,45 +1,35 @@
 import { defineAsyncComponent } from 'vue';
 
-const TheHeader = defineAsyncComponent(() =>
-    import(/* webpackChunkName: "group-common-components" */ './TheHeader.vue')
-);
-
-const TheSidebar = defineAsyncComponent(() =>
-    import(/* webpackChunkName: "group-common-components" */ './TheSidebar.vue')
-);
-const TheFooter = defineAsyncComponent(() =>
-    import(/* webpackChunkName: "group-common-components" */ './TheFooter.vue')
-);
-const BaseVirtualScroller = defineAsyncComponent(() =>
-    import(
-        /* webpackChunkName: "group-common-components" */ './BaseVirtualScroller.vue'
-    )
-);
-const BaseTutorialPage = defineAsyncComponent(() =>
-    import(
-        /* webpackChunkName: "group-common-components" */ './BaseTutorialPage.vue'
-    )
-);
 const components = [
     {
         name: 'the-header',
-        component: TheHeader,
+        component: defineAsyncComponent(() => import('./TheHeader.vue')),
     },
     {
         name: 'the-sidebar',
-        component: TheSidebar,
+        component: defineAsyncComponent(() => import('./TheSidebar.vue')),
     },
     {
         name: 'the-footer',
-        component: TheFooter,
+        component: defineAsyncComponent(() => import('./TheFooter.vue')),
     },
     {
         name: 'base-virtual-scroller',
-        component: BaseVirtualScroller,
+        component: defineAsyncComponent(() =>
+            import('./BaseVirtualScroller.vue')
+        ),
     },
     {
         name: 'base-tutorial-page',
-        component: BaseTutorialPage,
+        component: defineAsyncComponent(() => import('./BaseTutorialPage.vue')),
+    },
+    {
+        name: 'base-pagination',
+        component: defineAsyncComponent(() => import('./BasePagination.vue')),
+    },
+    {
+        name: 'base-notification',
+        component: defineAsyncComponent(() => import('./BaseNotification.vue')),
     },
 ];
 

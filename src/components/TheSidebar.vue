@@ -1,7 +1,11 @@
 <template>
     <base-virtual-scroller :items="routes" :amount="20" :item-height="30">
         <template #template="{ item }">
-            <router-link :to="item.index" class="router-link"
+            <router-link
+                :to="item.index"
+                class="router-link"
+                :title="item.text"
+                :aria-label="item.text"
                 >{{ item.text }}
             </router-link>
         </template>
@@ -14,6 +18,18 @@ export default {
             {
                 text: 'Virtual scroller',
                 index: 'virtual-scroller',
+            },
+            {
+                text: 'Pagination',
+                index: 'pagination',
+            },
+            {
+                text: 'Notification',
+                index: 'notification',
+            },
+            {
+                text: 'Single Page Apps for GitHub Pages',
+                index: 'single-page-app-for-github-pages',
             },
         ];
 

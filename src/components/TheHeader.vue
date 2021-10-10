@@ -15,8 +15,6 @@
 </template>
 <script>
 import { ref } from 'vue';
-import { fromEvent } from 'rxjs';
-import { filter } from 'rxjs/operators';
 export default {
     setup(props, { emit }) {
         let toggle = ref(false);
@@ -25,10 +23,6 @@ export default {
             toggle.value = !toggle.value;
             emit('toggle-icon', toggle.value);
         };
-
-        fromEvent(window, 'resize')
-            .pipe(filter(() => toggle.value))
-            .subscribe(() => toggleIcon());
 
         return {
             toggle,

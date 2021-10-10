@@ -1,15 +1,18 @@
 <template>
-    <div class="container transparent">
-        <the-header :hide-menu-icon="true" :transparent="true" />
-        <div class="home-page page-body">
-            <p class="say-hi">Hello</p>
+    <div class="home-page">
+        <the-header
+            class="container"
+            :hide-menu-icon="true"
+            :transparent="true" />
+        <div class="container page-body transparent">
+            <h2 class="say-hi">Hello</h2>
             <router-link
-                to="virtual-scroller"
+                :to="{ name: 'VirtualScroller' }"
                 class="btn btn-primary get-start">
                 GET START
             </router-link>
         </div>
+        <the-footer />
     </div>
-    <the-footer />
 </template>
 <script setup></script>

@@ -1,4 +1,20 @@
+$breakpoints: (
+    medium: $mq-medium,
+    large: $mq-large,
+    xlarge: $mq-xlarge,
+    xxlarge: $mq-xxlarge,
+);
+
 .container {
     margin: auto;
-    max-width: 1200px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+@each $key, $val in $breakpoints {
+    @media #{$val} {
+        .container {
+            max-width: map-get($bp, $key);
+        }
+    }
 }

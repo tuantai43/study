@@ -1,12 +1,14 @@
 .home-page {
-    background-size: 400% 400%;
-    animation: background-move 15s linear alternate infinite;
-    height: calc(100vh - 16px);
-    margin-top: -62px;
-    padding-top: 0;
-    margin-bottom: 8px;
-    align-items: center;
-    justify-content: center;
+    background: url('../images/pexels-cátia-matos-1072179.jpg') no-repeat center
+        fixed;
+    background-size: cover;
+    .page-body {
+        height: 100vh;
+        margin-top: -3rem;
+        padding-top: 0;
+        align-items: center;
+        justify-content: center;
+    }
 
     .say-hi {
         font-size: 2em;
@@ -15,6 +17,6 @@
     .get-start {
         flex-basis: auto;
         text-decoration: none;
-        border-width: 2px;
+        border-width: 0.1em;
     }
 }

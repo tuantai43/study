@@ -5,7 +5,8 @@
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
-    "deploy": "cd dist && copy index.html 404.html"
+    "deploy": "cd dist && copy index.html 404.html && cd .. && git add dist",
+    "publish": "git commit -m 'adding dist' && git subtree push --prefix dist origin gh-pages"
   },
   "dependencies": {
     "rxjs": "^7.3.1",
