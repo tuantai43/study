@@ -28,6 +28,10 @@ export default {
                 index: 'notification',
             },
             {
+                text: 'Repository Factory',
+                index: 'repository-factory',
+            },
+            {
                 text: 'Single Page Apps for GitHub Pages',
                 index: 'single-page-app-for-github-pages',
             },

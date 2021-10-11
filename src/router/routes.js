@@ -4,6 +4,7 @@ import Home from './views/Home.vue';
 import routesVirtualScroller from './views/virtual-scroller/routes';
 import routesPagination from './views/pagination/routes';
 import routesNotification from './views/notification/routes';
+import routesFactory from './views/repository-factory/routes';
 const routes = [
     {
         path: '/',
@@ -17,6 +18,7 @@ const routes = [
             ...routesVirtualScroller,
             ...routesPagination,
             ...routesNotification,
+            ...routesFactory,
             {
                 path: '/single-page-app-for-github-pages',
                 component: () => import('./views/SinglePageAppGithub.vue'),
