@@ -1,0 +1,1 @@
+import{r as s,a as r,o as l,c as p,d as c,t as u,b as i,F as d}from"./vendor.fcc8e3a6.js";const f={setup(g){const t=20,e=s(0);return(m,a)=>{const n=r("base-pagination");return l(),p(d,null,[c("p",null,"Current page: "+u(e.value),1),i(n,{index:e.value,"onUpdate:index":a[0]||(a[0]=o=>e.value=o),"total-pages":t,amount:5},null,8,["index"])],64)}}};export{f as default};

@@ -1,0 +1,1 @@
+import{_ as e}from"./index.ce210491.js";import{c as o,o as c}from"./vendor.fcc8e3a6.js";const r={},t={class:"footer"};function a(s,n){return c(),o("div",t,"\xA92021 pham tuan tai")}var i=e(r,[["render",a]]);export{i as default};
