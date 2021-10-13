@@ -1,36 +1,34 @@
 import { defineAsyncComponent } from 'vue';
 
-const components = [
-    {
-        name: 'the-header',
-        component: defineAsyncComponent(() => import('./TheHeader.vue')),
+export default {
+    install: (app) => {
+        app.component(
+            'the-header',
+            defineAsyncComponent(() => import('./TheHeader.vue'))
+        );
+        app.component(
+            'the-sidebar',
+            defineAsyncComponent(() => import('./TheSidebar.vue'))
+        );
+        app.component(
+            'the-footer',
+            defineAsyncComponent(() => import('./TheFooter.vue'))
+        );
+        app.component(
+            'base-virtual-scroller',
+            defineAsyncComponent(() => import('./BaseVirtualScroller.vue'))
+        );
+        app.component(
+            'base-tutorial-page',
+            defineAsyncComponent(() => import('./BaseTutorialPage.vue'))
+        );
+        app.component(
+            'base-pagination',
+            defineAsyncComponent(() => import('./BasePagination.vue'))
+        );
+        app.component(
+            'base-notification',
+            defineAsyncComponent(() => import('./BaseNotification.vue'))
+        );
     },
-    {
-        name: 'the-sidebar',
-        component: defineAsyncComponent(() => import('./TheSidebar.vue')),
-    },
-    {
-        name: 'the-footer',
-        component: defineAsyncComponent(() => import('./TheFooter.vue')),
-    },
-    {
-        name: 'base-virtual-scroller',
-        component: defineAsyncComponent(() =>
-            import('./BaseVirtualScroller.vue')
-        ),
-    },
-    {
-        name: 'base-tutorial-page',
-        component: defineAsyncComponent(() => import('./BaseTutorialPage.vue')),
-    },
-    {
-        name: 'base-pagination',
-        component: defineAsyncComponent(() => import('./BasePagination.vue')),
-    },
-    {
-        name: 'base-notification',
-        component: defineAsyncComponent(() => import('./BaseNotification.vue')),
-    },
-];
-
-export default components;
+};

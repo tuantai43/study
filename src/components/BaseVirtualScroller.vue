@@ -1,35 +1,29 @@
 <template>
-    <div
-        class="viewport"
-        ref="viewportElement"
-        @scroll="runScroller"
-        :style="{ height: viewportHeight + 'px' }">
-        <div :style="{ height: topPaddingHeight + 'px' }"></div>
-        <template
-            v-for="(item, itemIndex) in sources"
-            :key="`virtual-item-${itemIndex}-${item[idProp]}`">
-            <slot :item="item" v-if="$slots.template" name="template"></slot>
-            <div
-                class="virtual-item"
-                :style="{ height: itemHeight + 'px' }"
-                v-else>
-                {{ item[textProp] }}
+    <div class="virtual-scroller" @scroll="runScroller" :style="boxStyle">
+        <div class="viewport" :style="viewportStyle">
+            <div ref="spacer" :style="spacerStyle">
+                <template
+                    v-for="(item, itemIndex) in sources"
+                    :key="`virtual-item-${itemIndex}-${item[idProp]}`">
+                    <slot
+                        :item="item"
+                        v-if="$slots.template"
+                        name="template"></slot>
+                    <div
+                        class="virtual-item"
+                        :style="{ minHeight: `${itemHeight}px` }"
+                        v-else>
+                        {{ item[textProp] }}
+                    </div>
+                </template>
             </div>
-        </template>
-        <div :style="{ height: bottomPaddingHeight + 'px' }"></div>
+        </div>
     </div>
 </template>
 <script>
-import { ref } from 'vue';
+import { computed, nextTick, onMounted, ref } from 'vue';
 export default {
     props: {
-        start: {
-            type: Number,
-            default: 0,
-            validator: function (value) {
-                return value >= 0;
-            },
-        },
         itemHeight: {
             type: Number,
             default: 20,
@@ -40,13 +34,6 @@ export default {
         amount: {
             type: Number,
             default: 5,
-            validator: function (value) {
-                return value >= 1;
-            },
-        },
-        tolerance: {
-            type: Number,
-            default: 2,
             validator: function (value) {
                 return value >= 1;
             },
@@ -65,61 +52,124 @@ export default {
         },
     },
     setup(props) {
-        let viewportHeight = props.amount * props.itemHeight;
-        let totalHeight = props.items.length * props.itemHeight;
-        const bufferedItems = props.amount + 2 * props.tolerance;
-        let topPaddingHeight = ref(
-            (props.start - props.tolerance) * props.itemHeight
+        let boxHeight = props.amount * props.itemHeight;
+
+        let rowsHeight = [];
+        let transforms = ref([]);
+        rowsHeight[-1] = transforms.value[-1] = 0;
+
+        let spacerTransformY = ref(0);
+
+        let totalHeight = computed(
+            () =>
+                rowsHeight[rowsHeight.length - 1] +
+                transforms.value[transforms.value.length - 1]
         );
-        let bottomPaddingHeight = ref(totalHeight - topPaddingHeight.value);
+
+        let viewportStyle = computed(() => ({
+            height: `${totalHeight.value}px`,
+        }));
+
+        const boxStyle = computed(() => ({
+            height: `${Math.min(boxHeight, totalHeight.value)}px`,
+        }));
+
+        let spacerStyle = computed(() => ({
+            transform: `translateY(${spacerTransformY.value}px)`,
+        }));
+
+        let spacer = ref(null);
         let sources = ref([]);
 
         const getData = (offset, limit) => {
             let data = [];
             const start = Math.max(offset, 0);
-            const end = Math.min(offset + limit - 1, props.items.length);
+            const end = Math.min(offset + limit + 1, props.items.length);
             if (start <= end) {
                 data = props.items.slice(start, end);
             }
             return data;
         };
 
-        const runScroller = ({ target: { scrollTop } }) => {
-            const index = Math.floor(
-                scrollTop / props.itemHeight - props.tolerance
-            );
-            sources.value = getData(index, bufferedItems);
-            topPaddingHeight.value = Math.max(index * props.itemHeight, 0);
-            bottomPaddingHeight.value = Math.max(
-                totalHeight -
-                    topPaddingHeight.value -
-                    sources.value.length * props.itemHeight,
-                0
-            );
+        const findNodePosition = (scroll, left, right) => {
+            if (left > right) {
+                return right;
+            }
+            const middle = Math.floor((left + right) / 2);
+            if (transforms.value[middle] === scroll) {
+                return middle;
+            } else if (transforms.value[middle] < scroll) {
+                return findNodePosition(scroll, middle + 1, right);
+            } else {
+                return findNodePosition(scroll, left, middle - 1);
+            }
         };
 
-        if (props.amount + props.tolerance >= props.items.length) {
-            if (props.amount >= props.items.length) {
-                viewportHeight = totalHeight;
+        const getLimitOnView = (nodePosition) => {
+            let totalHeight = rowsHeight[nodePosition];
+            let i = 1;
+            while (totalHeight < boxHeight && i < rowsHeight.length) {
+                i++;
+                totalHeight += rowsHeight[nodePosition + i];
             }
-            topPaddingHeight.value = bottomPaddingHeight.value = 0;
-            sources.value = props.items;
-        } else {
-        }
-        runScroller({ target: { scrollTop: 0 } });
+            return i;
+        };
+
+        const runScroller = async ({ target: { scrollTop } }) => {
+            const nodePosition = findNodePosition(
+                scrollTop,
+                0,
+                transforms.value.length
+            );
+
+            spacerTransformY.value = transforms.value[nodePosition];
+
+            const limit = getLimitOnView(nodePosition);
+
+            sources.value = getData(nodePosition, limit);
+
+            if (totalHeight.value - scrollTop - boxHeight < 5) {
+                sources.value = getData(nodePosition, limit + props.amount);
+                await nextTick();
+                getHeightOnSpacerChildren(nodePosition);
+            }
+        };
+
+        const getHeightOnSpacerChildren = (start) => {
+            const children = spacer.value.children;
+            children &&
+                Array.from(children).map((ele, eleIndex) => {
+                    const { offsetHeight } = ele;
+                    const itemIndex = eleIndex + start;
+                    const oldHeight = rowsHeight[itemIndex];
+                    if (oldHeight != offsetHeight) {
+                        rowsHeight[itemIndex] = offsetHeight;
+                        transforms.value[itemIndex] =
+                            rowsHeight[itemIndex - 1] +
+                            transforms.value[itemIndex - 1];
+                    }
+                });
+        };
+
+        sources.value = getData(0, props.amount);
+        onMounted(() => getHeightOnSpacerChildren(0));
 
         return {
-            viewportHeight,
-            topPaddingHeight,
-            bottomPaddingHeight,
             runScroller,
             sources,
+            spacer,
+            spacerStyle,
+            viewportStyle,
+            boxStyle,
         };
     },
 };
 </script>
 <style lang="scss">
 .viewport {
+    overflow: hidden;
+}
+.virtual-scroller {
     overflow-y: auto;
 }
 </style>
