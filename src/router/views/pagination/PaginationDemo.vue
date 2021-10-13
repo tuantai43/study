@@ -1,27 +1,16 @@
 <template>
     <p>Current page: {{ currentPage }}</p>
     <base-pagination
-        :index="currentPage"
+        v-model:index="currentPage"
         :total-pages="totalPages"
-        :amount="5"
-        @updated-index="updateIndex" />
+        :amount="5" />
 </template>
-<script>
+<script setup>
 import { ref } from '@vue/reactivity';
-export default {
-    setup() {
-        const totalPages = 20;
-        const currentPage = ref(0);
+const totalPages = 20;
+const currentPage = ref(0);
 
-        const updateIndex = (index) => {
-            currentPage.value = index;
-        };
-
-        return {
-            totalPages,
-            currentPage,
-            updateIndex,
-        };
-    },
+const updateIndex = (index) => {
+    currentPage.value = index;
 };
 </script>
