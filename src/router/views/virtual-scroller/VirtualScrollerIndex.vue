@@ -1,7 +1,7 @@
 <template>
     <base-tutorial-page :title="label.title" :description="label.description">
         <p>Demo with 100 row with dynamic height</p>
-        <virtual-scroller-demo></virtual-scroller-demo>
+        <virtual-scroller-demo rows="100"></virtual-scroller-demo>
         <p>
             Source:
             <a
