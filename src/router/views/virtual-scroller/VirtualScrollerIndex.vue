@@ -1,18 +1,7 @@
 <template>
     <base-tutorial-page :title="label.title" :description="label.description">
-        <p>Demo with 150,000 row</p>
+        <p>Demo with 100 row with dynamic height</p>
         <virtual-scroller-demo></virtual-scroller-demo>
-        <p>
-            Cre:
-            <a
-                class="text-primary"
-                title="Virtual scrolling: Core principles and basic implementation in React"
-                aria-label="Virtual scrolling: Core principles and basic implementation in React"
-                href="https://blog.logrocket.com/virtual-scrolling-core-principles-and-basic-implementation-in-react/">
-                Virtual scrolling: Core principles and basic implementation in
-                React
-            </a>
-        </p>
         <p>
             Source:
             <a
